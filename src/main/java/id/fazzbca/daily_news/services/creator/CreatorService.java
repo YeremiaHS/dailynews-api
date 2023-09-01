@@ -14,5 +14,5 @@ public interface CreatorService {
     public ResponseEntity<?> selectAuthor(LoginRequest request);
 
     //change password
-    ResponseEntity<?> changePassAdminService(long id, ChangePassRequest request);
+    ResponseEntity<?> changePassCreatorService(long id, ChangePassRequest request);
 }

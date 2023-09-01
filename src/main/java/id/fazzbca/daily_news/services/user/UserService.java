@@ -14,5 +14,5 @@ public interface UserService {
     ResponseEntity<?> selectUser(LoginRequest request);
 
     //cahnge password
-    ResponseEntity<?> changePassAdminService(long id, ChangePassRequest request);
+    ResponseEntity<?> changePassUserService(long id, ChangePassRequest request);
 }

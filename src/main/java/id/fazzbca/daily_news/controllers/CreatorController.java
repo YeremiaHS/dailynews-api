@@ -2,11 +2,14 @@ package id.fazzbca.daily_news.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import id.fazzbca.daily_news.payloads.req.ChangePassRequest;
 import id.fazzbca.daily_news.payloads.req.LoginRequest;
 import id.fazzbca.daily_news.payloads.req.RegisterRequest;
 import id.fazzbca.daily_news.services.creator.CreatorService;
@@ -27,5 +30,10 @@ public class CreatorController {
     @PostMapping("/login")
     public ResponseEntity<?> loginCreator(@RequestBody @Valid LoginRequest request){
         return creatorService.selectAuthor(request);
+    }
+
+    @PutMapping("/change-password/{id}")
+    public ResponseEntity<?> changePassCreator(@PathVariable long id, @RequestBody ChangePassRequest request){
+        return creatorService.changePassCreatorService(id, request);
     }
 }

@@ -69,7 +69,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public ResponseEntity<?> changePassAdminService(long id, ChangePassRequest request) {
+    public ResponseEntity<?> changePassUserService(long id, ChangePassRequest request) {
         //find by id
         User user = userRepository.findById(id).orElseThrow(()->{
             throw new NoSuchElementException("Id is not found");

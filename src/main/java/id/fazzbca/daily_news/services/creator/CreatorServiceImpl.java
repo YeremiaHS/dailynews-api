@@ -69,7 +69,7 @@ public class CreatorServiceImpl implements CreatorService {
     }
 
     @Override
-    public ResponseEntity<?> changePassAdminService(long id, ChangePassRequest request) {
+    public ResponseEntity<?> changePassCreatorService(long id, ChangePassRequest request) {
         //find by id
         Creator creator = creatorRepository.findById(id).orElseThrow(()->{
             throw new NoSuchElementException("Id is not found");

@@ -32,7 +32,7 @@ public class AdminController {
         return adminService.selectAdminService(request);
     }
 
-    @PutMapping("/change_password/{id}")
+    @PutMapping("/change-password/{id}")
     public ResponseEntity<?> changePassAdmin(@PathVariable long id, @RequestBody ChangePassRequest request){
         return adminService.changePassAdminService(id, request);
     }
