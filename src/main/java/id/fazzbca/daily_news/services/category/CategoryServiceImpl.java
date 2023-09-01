@@ -91,8 +91,14 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public ResponseEntity<?> deleteCategory(long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteCategory'");
+        Category category = categoryRepository.findById(id).orElseThrow(()->{
+            throw new NoSuchElementException("id book not found");
+        });
+
+        category.setDeleted(true);
+        categoryRepository.save(category);
+
+        return ResponseHandler.responseMessage(201, "Successfully deleted category", true);
     }
     
 }
