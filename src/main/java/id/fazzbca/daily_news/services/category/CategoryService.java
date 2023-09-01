@@ -16,4 +16,7 @@ public interface CategoryService {
 
     //delete category
     ResponseEntity<?> deleteCategory(long id);
+
+    //recycle category
+    ResponseEntity<?> recycleCategory(long id);
 }

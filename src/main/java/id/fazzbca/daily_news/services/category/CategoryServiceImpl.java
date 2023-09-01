@@ -1,5 +1,6 @@
 package id.fazzbca.daily_news.services.category;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import id.fazzbca.daily_news.models.Admin;
 import id.fazzbca.daily_news.models.Category;
 import id.fazzbca.daily_news.payloads.req.CategoryRequest;
 import id.fazzbca.daily_news.payloads.res.ResponseHandler;
+import id.fazzbca.daily_news.payloads.res.ResponseShowCategory;
 import id.fazzbca.daily_news.repositories.AdminRepository;
 import id.fazzbca.daily_news.repositories.CategoryRepository;
 
@@ -61,8 +63,8 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public ResponseEntity<?> showCategory() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'showCategory'");
+        List<ResponseShowCategory> responses = categoryRepository.ShowCategory();
+        return ResponseHandler.responseData(200, "success", responses);
     }
 
     @Override
@@ -99,6 +101,18 @@ public class CategoryServiceImpl implements CategoryService {
         categoryRepository.save(category);
 
         return ResponseHandler.responseMessage(201, "Successfully deleted category", true);
+    }
+
+    @Override
+    public ResponseEntity<?> recycleCategory(long id) {
+        Category category = categoryRepository.findById(id).orElseThrow(()->{
+            throw new NoSuchElementException("id book not found");
+        });
+
+        category.setDeleted(false);
+        categoryRepository.save(category);
+
+        return ResponseHandler.responseMessage(201, "Successfully recycle category", true);
     }
     
 }
