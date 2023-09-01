@@ -2,6 +2,7 @@ package id.fazzbca.daily_news.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,5 +21,10 @@ public class NewsController {
     @PostMapping("/add")
     ResponseEntity<?> addNews(@RequestBody @Valid NewsRequest request){
         return newsService.addNews(request);
+    }
+
+    @GetMapping("/all")
+    ResponseEntity<?> showNews(){
+        return newsService.showAllNews();
     }
 }

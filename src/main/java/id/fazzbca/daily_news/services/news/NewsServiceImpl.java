@@ -1,5 +1,7 @@
 package id.fazzbca.daily_news.services.news;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -10,6 +12,7 @@ import id.fazzbca.daily_news.models.Creator;
 import id.fazzbca.daily_news.models.News;
 import id.fazzbca.daily_news.payloads.req.NewsRequest;
 import id.fazzbca.daily_news.payloads.res.ResponseHandler;
+import id.fazzbca.daily_news.payloads.res.ResponseShowNews;
 import id.fazzbca.daily_news.repositories.CategoryRepository;
 import id.fazzbca.daily_news.repositories.CreatorRepository;
 import id.fazzbca.daily_news.repositories.NewsRepository;
@@ -74,8 +77,8 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public ResponseEntity<?> showAllNews() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'showAllNews'");
+        List<ResponseShowNews> responses = newsRepository.showNews();
+        return ResponseHandler.responseData(200, "success", responses);
     }
 
     @Override
