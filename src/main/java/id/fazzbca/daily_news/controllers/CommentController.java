@@ -3,6 +3,7 @@ package id.fazzbca.daily_news.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,7 +17,7 @@ public class CommentController {
     CommentService commentService;
 
     @PostMapping("/add")
-    ResponseEntity<?> addComment(CommentRequest request){
+    ResponseEntity<?> addComment(@RequestBody CommentRequest request){
         return commentService.addComment(request);
     }
 }

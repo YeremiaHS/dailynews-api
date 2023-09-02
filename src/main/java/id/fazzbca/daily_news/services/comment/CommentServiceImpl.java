@@ -30,6 +30,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public ResponseEntity<?> addComment(CommentRequest request) {
+        System.out.println(request.getNewsId());
         if (request.getNewsId() == null || request.getNewsId() == "") {
             throw new IllegalArgumentException("input news id!");
         }
@@ -68,7 +69,7 @@ public class CommentServiceImpl implements CommentService {
 
         commentRepository.save(comment);
 
-        return ResponseHandler.responseMessage(201, "Successfully post news", true);
+        return ResponseHandler.responseMessage(201, "Successfully post comment", true);
     }
     
 }
