@@ -83,14 +83,15 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public ResponseEntity<?> showNewestNews() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'showNewestNews'");
+        List<ResponseShowNews> reponses = newsRepository.showNewestNews();
+        return ResponseHandler.responseData(200, "success", reponses);
     }
 
     @Override
-    public ResponseEntity<?> getNews(long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getNews'");
+    public ResponseEntity<?> getNews(String id) {
+        ResponseShowNews news = newsRepository.readNews(id);
+        
+        return ResponseHandler.responseData(200, "success", news);
     }
 
     // @Override

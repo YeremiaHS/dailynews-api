@@ -15,7 +15,7 @@ public interface NewsService {
     ResponseEntity<?> showNewestNews();
 
     //read a spesific news by all level
-    ResponseEntity<?> getNews(long id);
+    ResponseEntity<?> getNews(String id);
 
     //edit news by admin
     //ResponseEntity<?> editNews(long id, NewsRequest request);

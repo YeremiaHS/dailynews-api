@@ -12,4 +12,10 @@ public interface NewsRepository extends JpaRepository<News, String>{
 
     @Query(value = "SELECT news.title, news.content, creator.username, category.category, news.created_at FROM `news` JOIN `creator`, `category` WHERE news.creator_id = creator.id AND news.category_id = category.id;", nativeQuery = true)
     List<ResponseShowNews> showNews();
+
+    @Query(value = "SELECT news.title, news.content, creator.username, category.category, news.created_at FROM `news` JOIN `creator`, `category` WHERE news.creator_id = creator.id AND news.category_id = category.id;", nativeQuery = true)
+    ResponseShowNews readNews(String id);
+
+    @Query(value = "SELECT news.title, news.content, creator.username, category.category, news.created_at FROM `news` JOIN `creator`, `category` WHERE news.creator_id = creator.id AND news.category_id = category.id ORDER BY news.created_at DESC;", nativeQuery = true)
+    List<ResponseShowNews> showNewestNews();
 }
