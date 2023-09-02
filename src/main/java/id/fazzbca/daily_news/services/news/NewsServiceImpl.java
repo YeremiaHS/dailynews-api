@@ -12,6 +12,7 @@ import id.fazzbca.daily_news.models.Creator;
 import id.fazzbca.daily_news.models.News;
 import id.fazzbca.daily_news.payloads.req.NewsRequest;
 import id.fazzbca.daily_news.payloads.res.ResponseHandler;
+import id.fazzbca.daily_news.payloads.res.ResponseShowComment;
 import id.fazzbca.daily_news.payloads.res.ResponseShowNews;
 import id.fazzbca.daily_news.repositories.CategoryRepository;
 import id.fazzbca.daily_news.repositories.CreatorRepository;
@@ -92,6 +93,12 @@ public class NewsServiceImpl implements NewsService {
         ResponseShowNews news = newsRepository.readNews(id);
         
         return ResponseHandler.responseData(200, "success", news);
+    }
+
+    @Override
+    public ResponseEntity<?> showComment(String id) {
+        List<ResponseShowComment> responses = newsRepository.showComments();
+        return ResponseHandler.responseData(200, "success", responses);
     }
 
     // @Override

@@ -38,4 +38,9 @@ public class NewsController {
     ResponseEntity<?> showNewestNews(){
         return newsService.showNewestNews();
     }
+
+    @GetMapping("/comment/{id}")
+    ResponseEntity<?> showComments(@PathVariable String id){
+        return newsService.showComment(id);
+    }
 }
