@@ -1,6 +1,7 @@
 package id.fazzbca.daily_news.services.news;
 
 import java.util.List;
+// import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -97,14 +98,8 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public ResponseEntity<?> showComment(String id) {
-        List<ResponseShowComment> responses = newsRepository.showComments();
+        List<ResponseShowComment> responses = newsRepository.showComments(id);
         return ResponseHandler.responseData(200, "success", responses);
     }
-
-    // @Override
-    // public ResponseEntity<?> editNews(long id, NewsRequest request) {
-    //     // TODO Auto-generated method stub
-    //     throw new UnsupportedOperationException("Unimplemented method 'editNews'");
-    // }
-    
+  
 }

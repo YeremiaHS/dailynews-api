@@ -20,6 +20,4 @@ public interface NewsService {
     //show comments
     ResponseEntity<?> showComment(String id);
 
-    //edit news by admin
-    //ResponseEntity<?> editNews(long id, NewsRequest request);
 }

@@ -94,7 +94,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public ResponseEntity<?> deleteCategory(long id) {
         Category category = categoryRepository.findById(id).orElseThrow(()->{
-            throw new NoSuchElementException("id book not found");
+            throw new NoSuchElementException("id category not found");
         });
 
         category.setDeleted(true);
