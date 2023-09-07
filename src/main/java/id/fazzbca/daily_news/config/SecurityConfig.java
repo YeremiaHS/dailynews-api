@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 //@SuppressWarnings("deprecation")
 @Configuration
@@ -41,16 +42,37 @@ public class SecurityConfig {
 
         //authorize request
         http.authorizeHttpRequests(auth ->{
-            auth.requestMatchers("/news/all").permitAll()
-            .requestMatchers("user/**").permitAll()
-            .requestMatchers("admin/**").permitAll()
-            .requestMatchers("creator/**").permitAll()
-            .requestMatchers("new/add").hasRole("CREATOR")
+            auth.requestMatchers("news/add").hasRole("CREATOR")
+            .requestMatchers("/news/all").permitAll()
+            .requestMatchers("news/read/{id}").permitAll()
+            .requestMatchers("news/recent").permitAll()
+            .requestMatchers("news/comment/{id}").permitAll()
+            .requestMatchers("user/login").permitAll()
+            .requestMatchers("user/register").permitAll()
+            .requestMatchers("user/change-password/{id}").hasRole("USER")
+            .requestMatchers("user/change-password/{id}").hasRole("ADMIN")
+            .requestMatchers("admin/login").permitAll()
+            .requestMatchers("admin/change-password/{id}").hasRole("ADMIN")
+            .requestMatchers("creator/login").permitAll()
+            .requestMatchers("creator/register").permitAll()
+            .requestMatchers("creator/change-password/{id}").hasRole("CREATOR")
+            .requestMatchers("creator/change-password/{id}").hasRole("ADMIN")
+            .requestMatchers("category/add").hasRole("ADMIN")
+            .requestMatchers("category/edit/{id}").hasRole("ADMIN")
+            .requestMatchers("category/delete/{id}").hasRole("ADMIN")
+            .requestMatchers("category/recycle/{id}").hasRole("ADMIN")
+            .requestMatchers("category/available").permitAll()
+            .requestMatchers("comment/add").hasRole("USER")
+            .requestMatchers("/files/news").hasRole("CREATOR")
+            .requestMatchers("files/news/{imageId}").permitAll()
             .anyRequest().fullyAuthenticated();
         });
 
         //set authentication provider
         http.authenticationProvider(authenticationProvider());
+
+        // set filter
+        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         //basic auth
         // http.httpBasic();

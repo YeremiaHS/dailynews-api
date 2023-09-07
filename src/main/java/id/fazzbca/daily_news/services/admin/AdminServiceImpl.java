@@ -169,7 +169,7 @@ public class AdminServiceImpl implements AdminService {
         }
 
         //set password baru
-        admin.setPassword(request.getPassword());
+        admin.setPassword(passwordEncoder.encode(request.getPassword()));
 
         //save ke db
         adminRepository.save(admin);
