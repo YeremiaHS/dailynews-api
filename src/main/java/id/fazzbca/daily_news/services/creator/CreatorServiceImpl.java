@@ -170,7 +170,7 @@ public class CreatorServiceImpl implements CreatorService {
         }
 
         //set new passowrd
-        creator.setPassword(request.getPassword());
+        creator.setPassword(passwordEncoder.encode(request.getPassword()));
 
         //save ke db
         creatorRepository.save(creator);

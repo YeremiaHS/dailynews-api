@@ -215,7 +215,7 @@ public class UserServiceImpl implements UserService{
         }
 
         //set new password
-        user.setPassword(request.getPassword());
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
 
         //save ke db
         userRepository.save(user);

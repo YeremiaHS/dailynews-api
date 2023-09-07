@@ -52,6 +52,7 @@ public class SecurityConfig {
             .requestMatchers("user/change-password/{id}").hasRole("USER")
             .requestMatchers("user/change-password/{id}").hasRole("ADMIN")
             .requestMatchers("admin/login").permitAll()
+            .requestMatchers("admin/register").permitAll()
             .requestMatchers("admin/change-password/{id}").hasRole("ADMIN")
             .requestMatchers("creator/login").permitAll()
             .requestMatchers("creator/register").permitAll()
