@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import id.fazzbca.daily_news.models.User;
 
-public interface UserRepository extends JpaRepository<User, String> {
+public interface UserRepository extends JpaRepository<User, Long> {
     Boolean existsByUsername(String username);
     
     Boolean existsByEmail(String email);

@@ -7,18 +7,27 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import id.fazzbca.daily_news.models.User;
+import id.fazzbca.daily_news.repositories.AdminRepository;
 import id.fazzbca.daily_news.repositories.UserRepository;
+import id.fazzbca.daily_news.repositories.CreatorRepository;
+
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    AdminRepository adminRepository;
+
+    @Autowired
+    CreatorRepository creatorRepository;
+
     //email sebagai username saat login
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         
-        if (!userRepository.existsById(username)) {
+        if (!userRepository.existsByEmail(username)) {
             throw new UsernameNotFoundException(username + " is not found");
         }
 

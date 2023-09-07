@@ -7,6 +7,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import id.fazzbca.daily_news.models.Admin;
+import id.fazzbca.daily_news.models.Creator;
 import id.fazzbca.daily_news.models.User;
 import lombok.AllArgsConstructor;
 
@@ -20,6 +22,16 @@ public class UserDetailsImpl implements UserDetails {
     public static UserDetails buid(User user) {
         List<GrantedAuthority> authorities = AuthorityUtils.commaSeparatedStringToAuthorityList("USER");
         return new UserDetailsImpl(authorities, user.getPassword(), user.getEmail(), user.isDeleted());
+    }
+
+    public static UserDetails buid(Admin admin) {
+        List<GrantedAuthority> adminAuthorities = AuthorityUtils.commaSeparatedStringToAuthorityList("ADMIN");
+        return new UserDetailsImpl(adminAuthorities, admin.getPassword(), admin.getEmail(), admin.isDeleted()); 
+    }
+
+    public static UserDetails buid(Creator creator) {
+        List<GrantedAuthority> creatorAuthorities = AuthorityUtils.commaSeparatedStringToAuthorityList("CREATOR");
+        return new UserDetailsImpl(creatorAuthorities, creator.getPassword(), creator.getEmail(), creator.isDeleted()); 
     }
 
     @Override
