@@ -135,7 +135,6 @@ public class UserServiceImpl implements UserService{
 
         //return ResponseHandler
         return ResponseHandler.responseData(200, "success login", data);
-        // return ResponseHandler.responseMessage(200, "berhasil login", true);
     }
 
     public ResponseEntity<?> selectUserBasicAuth(LoginRequest request) {

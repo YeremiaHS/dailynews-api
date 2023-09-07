@@ -3,7 +3,6 @@ package id.fazzbca.daily_news.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -43,10 +42,10 @@ public class SecurityConfig {
         //authorize request
         http.authorizeHttpRequests(auth ->{
             auth.requestMatchers("/news/all").permitAll()
-            .requestMatchers(HttpMethod.POST, "/news/**").permitAll()
             .requestMatchers("user/**").permitAll()
             .requestMatchers("admin/**").permitAll()
             .requestMatchers("creator/**").permitAll()
+            .requestMatchers("new/add").hasRole("CREATOR")
             .anyRequest().fullyAuthenticated();
         });
 

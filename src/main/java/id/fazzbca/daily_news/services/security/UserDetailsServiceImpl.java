@@ -6,6 +6,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import id.fazzbca.daily_news.models.Admin;
+import id.fazzbca.daily_news.models.Creator;
 import id.fazzbca.daily_news.models.User;
 import id.fazzbca.daily_news.repositories.AdminRepository;
 import id.fazzbca.daily_news.repositories.UserRepository;
@@ -27,13 +29,19 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         
-        if (!userRepository.existsByEmail(username)) {
-            throw new UsernameNotFoundException(username + " is not found");
+        if (userRepository.existsByEmail(username)) {
+            User user = userRepository.findByEmail(username);
+            return UserDetailsImpl.buid(user);
+        } else if (adminRepository.existsByEmail(username)) {
+            Admin admin = adminRepository.findByEmail(username);
+            return UserDetailsImpl.buid(admin);
+        } else if (creatorRepository.existsByEmail(username)) {
+            Creator creator = creatorRepository.findByEmail(username);
+            return UserDetailsImpl.buid(creator);
         }
 
-        User user = userRepository.findByEmail(username);
-
-        return UserDetailsImpl.buid(user);
+        throw new UsernameNotFoundException(username + " is not found");
+        
     }
     
 }

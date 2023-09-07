@@ -20,17 +20,17 @@ public class UserDetailsImpl implements UserDetails {
     private Boolean isDeleted;
 
     public static UserDetails buid(User user) {
-        List<GrantedAuthority> authorities = AuthorityUtils.commaSeparatedStringToAuthorityList("USER");
+        List<GrantedAuthority> authorities = AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER");
         return new UserDetailsImpl(authorities, user.getPassword(), user.getEmail(), user.isDeleted());
     }
 
     public static UserDetails buid(Admin admin) {
-        List<GrantedAuthority> adminAuthorities = AuthorityUtils.commaSeparatedStringToAuthorityList("ADMIN");
+        List<GrantedAuthority> adminAuthorities = AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_ADMIN");
         return new UserDetailsImpl(adminAuthorities, admin.getPassword(), admin.getEmail(), admin.isDeleted()); 
     }
 
     public static UserDetails buid(Creator creator) {
-        List<GrantedAuthority> creatorAuthorities = AuthorityUtils.commaSeparatedStringToAuthorityList("CREATOR");
+        List<GrantedAuthority> creatorAuthorities = AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_CREATOR");
         return new UserDetailsImpl(creatorAuthorities, creator.getPassword(), creator.getEmail(), creator.isDeleted()); 
     }
 
