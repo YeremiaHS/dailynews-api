@@ -34,7 +34,7 @@ public class Image {
     private byte[] data;
 
     @ManyToOne
-    @JoinColumn(name = "news_d")
+    @JoinColumn(name = "news_id")
     private News news;
 
     @UpdateTimestamp

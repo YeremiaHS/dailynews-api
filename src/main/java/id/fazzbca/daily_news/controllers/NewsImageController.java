@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,16 +15,17 @@ import org.springframework.web.multipart.MultipartFile;
 import id.fazzbca.daily_news.services.image.ImageNewsService;
 
 @RestController
+@RequestMapping("files")
 public class NewsImageController {
     @Autowired
     ImageNewsService imageNewsService;
 
-    @PostMapping("/files/news")
+    @PostMapping("/add")
     public ResponseEntity<?> storeImage(@RequestParam(value = "file") MultipartFile file, @RequestParam(value = "newsId") String newsId) throws IOException {
         return imageNewsService.storeImage(file, newsId);
     }
 
-    @GetMapping("/files/news/{imageId}")
+    @GetMapping("/news/{imageId}")
     public ResponseEntity<?> loadImage(@PathVariable String imageId) {
         return imageNewsService.loadImagae(imageId);
     }

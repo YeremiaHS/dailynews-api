@@ -63,7 +63,7 @@ public class SecurityConfig {
             .requestMatchers("category/recycle/{id}").hasRole("ADMIN")
             .requestMatchers("category/available").permitAll()
             .requestMatchers("comment/add").hasRole("USER")
-            .requestMatchers("/files/news").hasRole("CREATOR")
+            .requestMatchers("files/add").hasRole("CREATOR")
             .requestMatchers("files/news/{imageId}").permitAll()
             .anyRequest().fullyAuthenticated();
         });
