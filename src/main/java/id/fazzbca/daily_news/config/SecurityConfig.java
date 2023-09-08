@@ -57,7 +57,7 @@ public class SecurityConfig {
             .requestMatchers("creator/register").permitAll()
             .requestMatchers("creator/forgot-password/{id}").permitAll()
             .requestMatchers("category/available").permitAll()
-            .requestMatchers("files/{imageId}").permitAll()
+            .requestMatchers("files/news{imageId}").permitAll()
             .anyRequest().fullyAuthenticated();
         });
 

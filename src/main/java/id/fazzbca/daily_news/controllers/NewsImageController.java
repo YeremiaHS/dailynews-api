@@ -27,7 +27,7 @@ public class NewsImageController {
         return imageNewsService.storeImage(file, newsId);
     }
 
-    @GetMapping("/{imageId}")
+    @GetMapping("/news{imageId}")
     public ResponseEntity<?> loadImage(@PathVariable String imageId) {
         return imageNewsService.loadImagae(imageId);
     }
