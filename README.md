@@ -15,6 +15,12 @@ REST API Daily-news
     - **Register Admin**: POST - http://localhost:8080/admin/register
     - **Register Creator**: POST - http://localhost:8080/creator/register
 
+- Forgot Password:
+    - **Forgot Password Admin**: PUT - http://localhost:8080/admin/forgot-password/{id}
+    - **Forgot Password User**: PUT - http://localhost:8080/user/forgot-password/{id}
+    - **Forgot Password Creator**: PUT - http://localhost:8080/creator/forgot-password/{id}
+
+
 - News:
     - **Create News**: POST - http://localhost:8080/news/add
     - **Show All News**: GET - http://localhost:8080/news/all
