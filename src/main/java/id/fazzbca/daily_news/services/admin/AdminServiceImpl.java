@@ -176,5 +176,34 @@ public class AdminServiceImpl implements AdminService {
 
         return ResponseHandler.responseData(200, "Success change password", admin);
     }
+
+    @Override
+    public ResponseEntity<?> forgotPassAdminService(long id, ChangePassRequest request) {
+        //find admin by id
+        Admin admin = adminRepository.findById(id).orElseThrow(()->{
+            throw new NoSuchElementException("Id is not found");
+        });
+
+        //validasi
+        if (request.getEmail() == null || request.getEmail() == "") {
+            throw new IllegalArgumentException("Email is requiered!");
+        }
+
+        if (request.getPassword() == null || request.getPassword() == "") {
+            throw new IllegalArgumentException("Password is requiered!");
+        }
+
+        if (!adminRepository.existsByEmail(request.getEmail())) {
+            throw new EntityFoundException("Input correct email");
+        }
+
+        //set password baru
+        admin.setPassword(passwordEncoder.encode(request.getPassword()));
+
+        //save ke db
+        adminRepository.save(admin);
+
+        return ResponseHandler.responseData(200, "Success change password", admin);
+    }
     
 }

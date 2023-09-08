@@ -177,5 +177,34 @@ public class CreatorServiceImpl implements CreatorService {
 
         return ResponseHandler.responseData(200, "Success change password", creator);
     }
+
+    @Override
+    public ResponseEntity<?> forgotPassCreatorService(long id, ChangePassRequest request) {
+        //find by id
+        Creator creator = creatorRepository.findById(id).orElseThrow(()->{
+            throw new NoSuchElementException("Id is not found");
+        });
+
+        //validasi
+        if (request.getEmail() == null || request.getEmail() == "") {
+            throw new IllegalArgumentException("Email is requiered!");
+        }
+
+        if (request.getPassword() == null || request.getPassword() == "") {
+            throw new IllegalArgumentException("Password is requiered!");
+        }
+
+        if (!creatorRepository.existsByEmail(request.getEmail())) {
+            throw new EntityFoundException("Input correct email");
+        }
+
+        //set new passowrd
+        creator.setPassword(passwordEncoder.encode(request.getPassword()));
+
+        //save ke db
+        creatorRepository.save(creator);
+
+        return ResponseHandler.responseData(200, "Success change password", creator);
+    }
     
 }

@@ -13,6 +13,9 @@ public interface AdminService {
     //login
     ResponseEntity<?> selectAdminService(LoginRequest request);
 
+    //forgot password
+    ResponseEntity<?> forgotPassAdminService(long id, ChangePassRequest request);
+
     //change password
     ResponseEntity<?> changePassAdminService(long id, ChangePassRequest request);
 }

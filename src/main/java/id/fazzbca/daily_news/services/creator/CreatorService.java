@@ -13,6 +13,10 @@ public interface CreatorService {
     //login
     public ResponseEntity<?> selectAuthor(LoginRequest request);
 
+    //forgot password
+    ResponseEntity<?> forgotPassCreatorService(long id, ChangePassRequest request);
+
+
     //change password
     ResponseEntity<?> changePassCreatorService(long id, ChangePassRequest request);
 }

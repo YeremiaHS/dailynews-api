@@ -222,5 +222,34 @@ public class UserServiceImpl implements UserService{
 
         return ResponseHandler.responseData(200, "Success change password", user);
     }
+
+    @Override
+    public ResponseEntity<?> forgotPassUserService(long id, ChangePassRequest request) {
+        //find by id
+        User user = userRepository.findById(id).orElseThrow(()->{
+            throw new NoSuchElementException("Id is not found");
+        });
+
+        //validasi
+        if (request.getEmail() == null || request.getEmail() == "") {
+            throw new IllegalArgumentException("Email is requiered!");
+        }
+
+        if (request.getPassword() == null || request.getPassword() == "") {
+            throw new IllegalArgumentException("Password is requiered!");
+        }
+
+        if (!userRepository.existsByEmail(request.getEmail())) {
+            throw new EntityFoundException("Input correct email");
+        }
+
+        //set new password
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
+
+        //save ke db
+        userRepository.save(user);
+
+        return ResponseHandler.responseData(200, "Success change password", user);
+    }
     
 }

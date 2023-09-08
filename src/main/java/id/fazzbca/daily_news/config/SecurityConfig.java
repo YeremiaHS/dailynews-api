@@ -42,30 +42,22 @@ public class SecurityConfig {
 
         //authorize request
         http.authorizeHttpRequests(auth ->{
-            auth.requestMatchers("news/add").hasRole("CREATOR")
-            .requestMatchers("/news/all").permitAll()
+            auth
+            .requestMatchers("news/all").permitAll()
             .requestMatchers("news/read/{id}").permitAll()
             .requestMatchers("news/recent").permitAll()
             .requestMatchers("news/comment/{id}").permitAll()
             .requestMatchers("user/login").permitAll()
             .requestMatchers("user/register").permitAll()
-            .requestMatchers("user/change-password/{id}").hasRole("USER")
-            .requestMatchers("user/change-password/{id}").hasRole("ADMIN")
+            .requestMatchers("user/forgot-password/{id}").permitAll()
             .requestMatchers("admin/login").permitAll()
             .requestMatchers("admin/register").permitAll()
-            .requestMatchers("admin/change-password/{id}").hasRole("ADMIN")
+            .requestMatchers("admin/forgot-password/{id}").permitAll()
             .requestMatchers("creator/login").permitAll()
             .requestMatchers("creator/register").permitAll()
-            .requestMatchers("creator/change-password/{id}").hasRole("CREATOR")
-            .requestMatchers("creator/change-password/{id}").hasRole("ADMIN")
-            .requestMatchers("category/add").hasRole("ADMIN")
-            .requestMatchers("category/edit/{id}").hasRole("ADMIN")
-            .requestMatchers("category/delete/{id}").hasRole("ADMIN")
-            .requestMatchers("category/recycle/{id}").hasRole("ADMIN")
+            .requestMatchers("creator/forgot-password/{id}").permitAll()
             .requestMatchers("category/available").permitAll()
-            .requestMatchers("comment/add").hasRole("USER")
-            .requestMatchers("files/add").hasRole("CREATOR")
-            .requestMatchers("files/news/{imageId}").permitAll()
+            .requestMatchers("files/{imageId}").permitAll()
             .anyRequest().fullyAuthenticated();
         });
 

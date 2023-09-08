@@ -2,6 +2,7 @@ package id.fazzbca.daily_news.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -32,7 +33,13 @@ public class UserController {
     }
 
     @PutMapping("/change-password/{id}")
+    @PreAuthorize("hasRole('USER') || hasRole('ADMIN')")
     public ResponseEntity<?> changePassUser(@PathVariable long id, @RequestBody ChangePassRequest request){
         return userService.changePassUserService(id, request);
+    }
+
+    @PutMapping("/forgot-password/{id}")
+    public ResponseEntity<?> forgotPassUser(@PathVariable long id, @RequestBody ChangePassRequest request){
+        return userService.forgotPassUserService(id, request);
     }
 }
