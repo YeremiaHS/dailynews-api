@@ -34,7 +34,7 @@ public class AdminController {
     }
 
     @PutMapping("/change-password/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')") //hasRole('ADMIN') => endpoint yang hanya bisa diakses oleh role admin
     public ResponseEntity<?> changePassAdmin(@PathVariable long id, @RequestBody ChangePassRequest request){
         return adminService.changePassAdminService(id, request);
     }

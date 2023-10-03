@@ -22,25 +22,25 @@ public class CategoryController {
     CategoryService categoryService;
 
     @PostMapping("/add")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')") //hasRole('ADMIN') => endpoint yang hanya bisa diakses oleh role admin
     public ResponseEntity<?> addCategory(@RequestBody @Valid CategoryRequest request){
         return categoryService.createCategory(request);
     }
 
     @PostMapping("/edit/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')") //hasRole('ADMIN') => endpoint yang hanya bisa diakses oleh role admin
     public ResponseEntity<?> editCategory(@PathVariable long id, @RequestBody CategoryRequest request){
         return categoryService.editCategory(id, request);
     }
 
     @DeleteMapping("/delete/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')") //hasRole('ADMIN') => endpoint yang hanya bisa diakses oleh role admin
     public ResponseEntity<?> deleteCategory(@PathVariable long id){
         return categoryService.deleteCategory(id);
     }
 
     @DeleteMapping("/recycle/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')") //hasRole('ADMIN') => endpoint yang hanya bisa diakses oleh role admin
     public ResponseEntity<?> recycleCategory(@PathVariable long id){
         return categoryService.recycleCategory(id);
     }

@@ -33,7 +33,7 @@ public class UserController {
     }
 
     @PutMapping("/change-password/{id}")
-    @PreAuthorize("hasRole('USER') || hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER') || hasRole('ADMIN')") //hasRole('USER') || hasRole('ADMIN') => endpoint yang hanya bisa diakses oleh role ADMIN & USER
     public ResponseEntity<?> changePassUser(@PathVariable long id, @RequestBody ChangePassRequest request){
         return userService.changePassUserService(id, request);
     }

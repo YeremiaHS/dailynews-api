@@ -18,7 +18,7 @@ public class CommentController {
     CommentService commentService;
 
     @PostMapping("/add")
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('USER')") //hasRole('USER') => endpoint yang hanya bisa diakses oleh role user
     ResponseEntity<?> addComment(@RequestBody CommentRequest request){
         return commentService.addComment(request);
     }

@@ -22,7 +22,7 @@ public class NewsImageController {
     ImageNewsService imageNewsService;
 
     @PostMapping("/add")
-    @PreAuthorize("hasRole('CREATOR') || hasRole('ADMIN')")
+    @PreAuthorize("hasRole('CREATOR') || hasRole('ADMIN')") //hasRole('CREATOR') => endpoint yang hanya bisa diakses oleh role CREATOR
     public ResponseEntity<?> storeImage(@RequestParam(value = "file") MultipartFile file, @RequestParam(value = "newsId") String newsId) throws IOException {
         return imageNewsService.storeImage(file, newsId);
     }

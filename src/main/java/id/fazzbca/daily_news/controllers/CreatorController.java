@@ -34,7 +34,7 @@ public class CreatorController {
     }
 
     @PutMapping("/change-password/{id}")
-    @PreAuthorize("hasRole('CREATOR') || hasRole('ADMIN')")
+    @PreAuthorize("hasRole('CREATOR') || hasRole('ADMIN')") //hasRole('CREATOR') => endpoint yang hanya bisa diakses oleh role creator
     public ResponseEntity<?> changePassCreator(@PathVariable long id, @RequestBody ChangePassRequest request){
         return creatorService.changePassCreatorService(id, request);
     }

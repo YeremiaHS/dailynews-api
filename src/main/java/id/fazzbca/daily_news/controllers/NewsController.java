@@ -22,7 +22,7 @@ public class NewsController {
     NewsService newsService;
 
     @PostMapping("/add")
-    @PreAuthorize("hasRole('CREATOR')")
+    @PreAuthorize("hasRole('CREATOR')") //hasRole('CREATOR') => endpoint yang hanya bisa diakses oleh role CREATOR
     ResponseEntity<?> addNews(@RequestBody @Valid NewsRequest request){
         return newsService.addNews(request);
     }

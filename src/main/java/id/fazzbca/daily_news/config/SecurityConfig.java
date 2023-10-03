@@ -40,10 +40,10 @@ public class SecurityConfig {
             session.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         });
 
-        //authorize request
+        //authorize request per endpoint
         http.authorizeHttpRequests(auth ->{
             auth
-            .requestMatchers("news/all").permitAll()
+            .requestMatchers("news/all").permitAll() //*permitAll() => memberikan akses kepada seluruh role 
             .requestMatchers("news/read/{id}").permitAll()
             .requestMatchers("news/recent").permitAll()
             .requestMatchers("news/comment/{id}").permitAll()
